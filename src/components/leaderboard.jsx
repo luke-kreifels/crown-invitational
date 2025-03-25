@@ -7,29 +7,63 @@ const Leaderboard = ({ onClose }) => {
   const [selectedSubmission, setSelectedSubmission] = useState(null);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  useEffect(() => {
-    const bracketsRef = ref(database, 'brackets');
-    
-    const unsubscribe = onValue(bracketsRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        // Convert object to array and sort by submission time
-        const submissionsList = Object.entries(data)
-          .map(([id, submission]) => ({
-            id,
-            ...submission
-          }))
-          .sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
-        
-        setSubmissions(submissionsList);
-      }
-      setIsLoading(false);
-    }, (error) => {
-      console.error('Error fetching submissions:', error);
-      setIsLoading(false);
-    });
+  const correctWinners = {
+    round1: ["winner1", "winner2", "winner3", "winner4", "winner5", "winner6", "winner7", "winner8"],
+    round2: ["winner1", "winner2", "winner3", "winner4"],
+    semifinals: ["winner1", "winner2"],
+    finals: ["champ"]
+  };
 
-    // Cleanup subscription on unmount
+  const calculateScore = (userBracket) => {
+    let score = 0;
+    const pointValues = { round1: 10, round2: 20, semifinals: 40, finals: 80 };
+  
+    Object.keys(pointValues).forEach((round) => {
+      const correctTeams = correctWinners[round] || [];
+  
+      const userWinners = [
+        ...(userBracket.left?.[round]?.map((match) => match.winner) || []),
+        ...(userBracket.right?.[round]?.map((match) => match.winner) || []),
+        ...(round === "finals" ? userBracket.finals?.map((match) => match.winner) || [] : []),
+      ];
+
+      userWinners.forEach((winner) => {
+        if (winner && correctTeams.includes(winner)) {
+          score += pointValues[round];
+        }
+      });
+    });
+  
+    return score;
+  };
+  
+
+  useEffect(() => {
+    const bracketsRef = ref(database, "brackets");
+  
+    const unsubscribe = onValue(
+      bracketsRef,
+      (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const submissionsList = Object.entries(data)
+            .map(([id, submission]) => ({
+              id,
+              ...submission,
+              points: calculateScore(submission.bracketData)
+            }))
+            .sort((a, b) => b.points - a.points);
+  
+          setSubmissions(submissionsList);
+        }
+        setIsLoading(false);
+      },
+      (error) => {
+        console.error("Error fetching submissions:", error);
+        setIsLoading(false);
+      }
+    );
+  
     return () => unsubscribe();
   }, []);
 
@@ -166,7 +200,7 @@ const Leaderboard = ({ onClose }) => {
                 >
                   <td style={{ textDecoration: "underline" }}>{submission.userName}</td>
                   <td>{submission.champion}</td>
-                  <td>0</td>
+                  <td>{submission.points}</td>
                 </tr>
               ))}
             </tbody>
