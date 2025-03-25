@@ -1,0 +1,370 @@
+/* General Bracket Layout */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.tournament-header {
+    display: flex;
+    justify-content: center; /* Center the content */
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: black;
+    padding: 15px 0;
+}
+
+.tournament-title {
+    text-align: center;
+    color: gold;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.submit-bracket-button {
+    position: absolute;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: gold;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-bracket-button:hover {
+    background-color: #DAA520; /* Slightly lighter gold */
+}
+
+.leaderboard-button {
+    position: absolute;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: gold;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.leaderboard-button:hover {
+    background-color: #DAA520; /* Slightly lighter gold */
+}
+
+.bracket-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin: auto;
+    padding: 10px 0;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+/* Each round is a vertical stack of matches */
+.round-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+/* Match Styling */
+.match {
+    background: #f4f4f4;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: center;
+    width: 120px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid gold;
+}
+
+/* Finals Column */
+.finals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Champion Box */
+.champion-box {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: gold;
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 180px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    border: 2px solid black;
+}
+
+/* Button Styling */
+button {
+    display: block;
+    margin: 3px;
+    padding: 8px;
+    width: 100px;
+    cursor: pointer;
+    border: 1px solid gold;
+    border-radius: 5px;
+    background: black;
+    color: gold;
+    font-size: 12px;
+    transition: background 0.2s ease-in-out;
+}
+
+button:hover {
+    background: #333;
+}
+
+button:disabled {
+    background: #444;
+    color: #888;
+    cursor: not-allowed;
+}
+
+/* Title Styles */
+h2 {
+    font-size: 1em;
+    margin-bottom: 5px;
+    text-align: center;
+    color: black;
+}
+
+/* Popup Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: #f4f4f4;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 3px solid gold;
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: black;
+}
+
+.winners-list {
+    margin-bottom: 20px;
+}
+
+.winner-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid gold;
+}
+
+.winner-round {
+    font-weight: bold;
+    color: black;
+}
+
+.winner-team {
+    color: #333;
+}
+
+.champion-confirmation {
+    background-color: black;
+    color: gold;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.submission-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.name-input {
+    padding: 10px;
+    border: 1px solid gold;
+    border-radius: 5px;
+}
+
+.final-submit-button {
+    padding: 10px;
+    background-color: black;
+    color: gold;
+    border: 1px solid gold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.final-submit-button:hover {
+    background-color: #333;
+}
+
+.final-submit-button:disabled {
+    background-color: #444;
+    color: #888;
+    cursor: not-allowed;
+}
+
+
+.leaderboard-popup {
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .leaderboard-container {
+    padding: 20px;
+    position: relative;
+  }
+  
+  .leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .leaderboard-table th, 
+  .leaderboard-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .clickable-row {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .clickable-row:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .detailed-view {
+    margin-top: 20px;
+  }
+  
+  .detailed-bracket {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .detailed-round {
+    width: 22%;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .detailed-round h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .matches-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .left-side, .right-side {
+    width: 48%;
+  }
+  
+  .match, .finals-match {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #eee;
+  }
+  
+  .team {
+    margin: 5px 0;
+  }
+  
+  .team:has(+ .team) {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .back-to-leaderboard {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .submission-details {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+
+  .scoring-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  .info-icon {
+    cursor: pointer;
+    font-size: 1.2em;
+  }
+  
+  .tooltip {
+    position: absolute;
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    top: 25px;
+    left: 0;
+    white-space: nowrap;
+    z-index: 10;
+  }
