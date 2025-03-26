@@ -10,6 +10,7 @@ body, html {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    padding-bottom: 50px; /* Adds space at the bottom */
 }
 
 .tournament-header {
@@ -29,36 +30,39 @@ body, html {
     letter-spacing: 2px;
 }
 
-.submit-bracket-button {
-    position: absolute;
-    right: 20px;
-    padding: 10px 15px;
-    background-color: gold;
-    color: black;
+.champion-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.submit-bracket-button, .leaderboard-button {
+    position: static;
+    padding: 6px 12px; /* Smaller button size */
+    font-size: 14px; /* Smaller text */
+    background-color: #002147; /* Deep navy blue */
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.submit-bracket-button:hover {
-    background-color: #DAA520; /* Slightly lighter gold */
-}
-
-.leaderboard-button {
-    position: absolute;
-    left: 20px;
-    padding: 10px 15px;
-    background-color: gold;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.leaderboard-button:hover {
-    background-color: #DAA520; /* Slightly lighter gold */
+.submit-bracket-button:hover, .leaderboard-button:hover {
+    background-color: #003366; /* Slightly lighter navy blue */
+    transform: scale(1.05); /* Slight hover effect */
 }
 
 .bracket-container {

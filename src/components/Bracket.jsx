@@ -334,21 +334,9 @@ const Bracket = () => {
 
   
     return (
-    <div className="app-container">
+      <div className="app-container">
       <div className="tournament-header">
-        <button 
-            onClick={openLeaderboard} 
-            className="leaderboard-button"
-          >
-            Leaderboard
-        </button>
         <div className="tournament-title">Crown Invitational</div>
-        <button 
-          onClick={openSubmissionPopup} 
-          className="submit-bracket-button"
-        >
-          Submit Bracket
-        </button>
       </div>
       
       {/* Leaderboard Popup */}
@@ -434,6 +422,21 @@ const Bracket = () => {
           {/* Champion Box (Now Below the Final Match) */}
           <div className="champion-box">
             <h2>Champion: {champion || "TBD"}</h2>
+            {/* Buttons moved inside the Champion Box */}
+            <div className="button-container">
+              <button 
+                onClick={openLeaderboard} 
+                className="leaderboard-button"
+              >
+                Leaderboard
+              </button>
+              <button 
+                onClick={openSubmissionPopup} 
+                className="submit-bracket-button"
+              >
+                Submit Bracket
+              </button>
+            </div>
           </div>
         </div>
 
@@ -460,8 +463,7 @@ const Bracket = () => {
         </div>
       </div>
     </div>
-    
-  );
+    );
 };
 
 export default Bracket;
