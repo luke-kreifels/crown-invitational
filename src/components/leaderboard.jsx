@@ -8,7 +8,7 @@ const Leaderboard = ({ onClose }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const correctWinners = {
-    round1: ["winner1", "winner2", "winner3", "winner4", "winner5", "winner6", "winner7", "winner8"],
+    round1: ["Butler", "Boise St.", "Nebraska", "Georgetown", "winner5", "winner6", "winner7", "winner8"],
     round2: ["winner1", "winner2", "winner3", "winner4"],
     semifinals: ["winner1", "winner2"],
     finals: ["champ"]
