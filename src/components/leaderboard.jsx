@@ -9,7 +9,7 @@ const Leaderboard = ({ onClose }) => {
 
   const correctWinners = {
     round1: ["Butler", "Boise St.", "Nebraska", "Georgetown", "Cinncinati", "UCF", "Villanova", "USC"],
-    round2: ["Boise St.", "Nebraska", "winner3", "winner4"],
+    round2: ["Boise St.", "Nebraska", "UCF", "Villanova"],
     semifinals: ["winner1", "winner2"],
     finals: ["champ"]
   };
