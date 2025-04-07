@@ -11,7 +11,7 @@ const Leaderboard = ({ onClose }) => {
     round1: ["Butler", "Boise St.", "Nebraska", "Georgetown", "Cinncinati", "UCF", "Villanova", "USC"],
     round2: ["Boise St.", "Nebraska", "UCF", "Villanova"],
     semifinals: ["Nebraska", "UCF"],
-    finals: ["champ"]
+    finals: ["Nebraska"]
   };
 
   const calculateScore = (userBracket) => {
